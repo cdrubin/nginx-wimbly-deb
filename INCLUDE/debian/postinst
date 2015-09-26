@@ -1,0 +1,5 @@
+#! /bin/sh
+
+# nginx configuration setup
+mkdir -p /etc/nginx/sites-available
+mkdir -p /etc/nginx/sites-enabled
