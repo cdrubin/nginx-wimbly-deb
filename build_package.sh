@@ -1,4 +1,4 @@
 #! /bin/sh
 
-. ./VARS
+. ./INCLUDE/VARS
 
