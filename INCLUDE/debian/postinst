@@ -3,3 +3,31 @@
 # nginx configuration setup
 mkdir -p /etc/nginx/sites-available
 mkdir -p /etc/nginx/sites-enabled
+
+# enable building C files for luarocks installs
+apt-get update
+apt-get install -y --no-install-recommends build-essential
+apt-get install -y --no-install-recommends libssl-dev
+
+# base luarocks libraries
+cd /var/lib/nginx/luajit/bin
+./luarocks install luafilesystem
+./luarocks install uuid
+./luarocks install bcrypt
+./luarocks install date
+./luarocks install csv
+./luarocks install inspect
+./luarocks install middleclass
+./luarocks install resty-mongol
+
+# wimbly repo
+mkdir -p /var/lib/nginx/lualib/wimbly
+#chown www-data:www-data /var/lib/nginx/lualib/wimbly
+git clone https://github.com/cdrubin/wimbly-lib.git /var/lib/nginx/lualib/wimbly
+
+# add config files
+# (do earlier-on in the process)
+#cp nginx.base.config /etc/nginx/nginx.conf
+#cp wimbly_cors.config /etc/nginx/wimbly_cors.conf
+#cp wimbly_cors_options.config /etc/nginx/winbly_cors_options.conf
+#cp init.lua.config /etc/nginx/init.lua
