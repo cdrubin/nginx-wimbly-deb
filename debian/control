@@ -1,0 +1,10 @@
+Source: nginx-benchmark
+Maintainer: Daniel Rubin <cdrubin@benchmarkeducation.com>
+Section: misc
+Priority: optional
+Standards-Version:
+Build-Depends: libpcre3-dev, libssl-dev, debhelper (>= 9)
+
+Package: nginx-benchmark
+Architecture: any
+Description: Benchmark nginx build
