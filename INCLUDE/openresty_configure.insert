@@ -3,4 +3,8 @@
     push @make_install_cmds, "cd $root_dir/build/luarocks-wimbly* && " .
         "\$(MAKE) install && cd \$(DESTDIR)/var/lib/nginx/luajit/bin && ln -s luajit* luajit";
 
-    # and some more commands
+    # setup nginx config environment
+	#
+	# (!) need to work out how to run post install commands on the installing host...
+	#push @make_install_cmds, "mkdir -p /etc/nginx/sites-available";
+	#push @make_install_cmds, "mkdir -p /etc/nginx/sites-enabled";
