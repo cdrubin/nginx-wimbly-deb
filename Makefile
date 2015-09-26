@@ -44,10 +44,10 @@ build:			devscripts-required
 	mv BUILD/luarocks-wimbly-$(LUAROCKS_VERSION) BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle
 
 	# copy config files into nginx conf directory
-	cp INCLUDE/nginx.base.config BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle/nginx-*/nginx.conf
-	cp INCLUDE/wimbly_cors.config BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle/nginx-*/wimbly_cors.conf
-	cp INCLUDE/wimbly_cors_options.config BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle/nginx-*/wimbly_cors_options.conf
-	cp INCLUDE/init.lua.config BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle/nginx-*/init.lua
+	cp INCLUDE/nginx.conf BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle/nginx-[1-9]*/conf
+	cp INCLUDE/wimbly_cors.conf BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle/nginx-[1-9]*/conf
+	cp INCLUDE/wimbly_cors_options.conf BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle/nginx-[1-9]*/conf
+	cp INCLUDE/init.lua BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle/nginx-[1-9]*/conf
 
 	# insert install commands into the package
 	sed -i -e '/install resty/r INCLUDE/openresty_configure.insert' BUILD/nginx-wimbly-$(NGINX_VERSION)/configure
