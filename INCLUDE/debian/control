@@ -1,10 +1,10 @@
-Source: nginx-benchmark
-Maintainer: Daniel Rubin <cdrubin@benchmarkeducation.com>
+Source: nginx-wimbly
+Maintainer: Daniel Rubin <daniel@rubin.za.net>
 Section: misc
 Priority: optional
 Standards-Version:
 Build-Depends: libpcre3-dev, libssl-dev, debhelper (>= 9)
 
-Package: nginx-benchmark
+Package: nginx-wimbly
 Architecture: any
-Description: Benchmark nginx build
+Description: wimbly nginx build
