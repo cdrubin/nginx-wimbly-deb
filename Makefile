@@ -31,7 +31,9 @@ download:		curl-required
 
 
 gcc-required: ; @which gcc > /dev/null
-build:			gcc-required
+dch-required: ; @which dch > /dev/null
+debuild-required: ; @which debuild > /dev/null
+build:			gcc-required dch-required debuild-required
 	# copy in the pre-configured luarocks
 	cp INCLUDE/luarocks-wimbly-$(LUAROCKS_VERSION).tar.gz BUILD
 
@@ -43,6 +45,18 @@ build:			gcc-required
 	cd BUILD && tar -xzf luarocks-wimbly-$(LUAROCKS_VERSION).tar.gz
 	mv BUILD/luarocks-wimbly-$(LUAROCKS_VERSION) BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle
 
+	# insert install commands into the package
+	sed -i -e '/install resty/r INCLUDE/openresty_configure.insert' BUILD/nginx-wimbly-$(NGINX_VERSION)/configure
+
+	# repackage
+	cd BUILD && tar -czvf nginx-wimbly_$(NGINX_VERSION).orig.tar.gz nginx-wimbly-$(NGINX_VERSION)
+	rm BUILD/ngx_openresty-$(NGINX_VERSION).tar.gz
+
+	# copy in the deb boiler-plate files
+	cp -r INCLUDE/debian BUILD/nginx-wimbly-$(NGINX_VERSION)
+
+	# build the deb
+	cd BUILD/nginx-benchmark-$(NGINX_VERSION) && dch --create -v $(NGINX_VERSION) --package nginx-wimbly && debuild -us -uc
 
 clean:
 	rm -r BUILD/*
