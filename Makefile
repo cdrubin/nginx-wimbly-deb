@@ -43,6 +43,12 @@ build:			devscripts-required
 	cd BUILD && tar -xzf luarocks-wimbly-$(LUAROCKS_VERSION).tar.gz
 	mv BUILD/luarocks-wimbly-$(LUAROCKS_VERSION) BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle
 
+	# copy config files into nginx conf directory
+	cp INCLUDE/nginx.base.config BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle/nginx-*/nginx.conf
+	cp INCLUDE/wimbly_cors.config BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle/nginx-*/wimbly_cors.conf
+	cp INCLUDE/wimbly_cors_options.config BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle/nginx-*/wimbly_cors_options.conf
+	cp INCLUDE/init.lua.config BUILD/nginx-wimbly-$(NGINX_VERSION)/bundle/nginx-*/init.lua
+
 	# insert install commands into the package
 	sed -i -e '/install resty/r INCLUDE/openresty_configure.insert' BUILD/nginx-wimbly-$(NGINX_VERSION)/configure
 
