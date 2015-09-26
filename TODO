@@ -1,0 +1,7 @@
+
+1. fix luarocks building
+   (perhaps move to while package is being built instead of during install?)
+
+2. fix wimbly_cors and init.lua copy into /etc/nginx on install
+
+3. app default app
